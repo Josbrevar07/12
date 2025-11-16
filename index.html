@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Página web de Apoyo — Comunidad, aceptación y autoayuda en salud mental
+    </title>
+    <meta
+      name="description"
+      content="Espacio ético, educativo y comunitario para la aceptación, la autoayuda y la conciencia sobre salud mental. No reemplaza orientación profesional."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Bree+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f172a; /* slate-900 */
+        --surface: #111827; /* gray-900 */
+        --text: #e5e7eb; /* gray-200 */
+        --muted: #94a3b8; /* slate-400 */
+        --brand: #22c55e; /* green-500 */
+        --cyan: #06b6d4; /* cyan-500 */
+        --amber: #f59e0b; /* amber-500 */
+        --card: #1f2937; /* gray-800 */
+        --link: #7dd3fc; /* sky-300 */
+        --shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+        --nav-h: 66px;
+        --max: 1120px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0f172a;
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+        line-height: 1.6;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Bree Serif", serif;
+        margin: 0 0 8px 0;
+      }
+      p {
+        margin: 0 0 12px 0;
+      }
+
+      /* NAV: fijo, sólido, limpio, con comportamiento al scroll */
+      .nav-wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-h);
+        background: var(--surface);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+        z-index: 1000;
+        transition: top 280ms ease;
+      }
+      .nav-wrap.hide {
+        top: -80px;
+      }
+      .nav {
+        max-width: var(--max);
+        margin: 0 auto;
+        height: var(--nav-h);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 12px;
+        padding: 0 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+      }
+      .brand-logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+        background: conic-gradient(
+          from 210deg at 50% 50%,
+          var(--brand),
+          var(--cyan),
+          var(--amber),
+          var(--brand)
+        );
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .nav-links a {
+        color: var(--text);
+        font-weight: 600;
+        padding: 8px 10px;
+        border-radius: 8px;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .nav-social {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+      }
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Layout principal */
+      header.hero {
+        max-width: var(--max);
+        margin: calc(var(--nav-h) + 18px) auto 24px;
+        padding: 0 16px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 16px;
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 22px;
+      }
+      .card h1 {
+        font-size: 32px;
+      }
+      .card p {
+        font-size: 16px;
+        color: var(--muted);
+      }
+      .cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .btn.brand {
+        border-color: rgba(34, 197, 94, 0.45);
+        background: linear-gradient(
+          180deg,
+          rgba(34, 197, 94, 0.25),
+          rgba(34, 197, 94, 0.18)
+        );
+      }
+      .btn.alt {
+        border-color: rgba(6, 182, 212, 0.35);
+        background: linear-gradient(
+          180deg,
+          rgba(6, 182, 212, 0.25),
+          rgba(6, 182, 212, 0.18)
+        );
+      }
+      .tip {
+        border-left: 4px solid var(--brand);
+        padding-left: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      /* Panel derecho: chips y mensajes */
+      .right-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(34, 197, 94, 0.15);
+        color: #c7f9cc;
+        border: 1px solid rgba(34, 197, 94, 0.35);
+        font-weight: 700;
+        margin-top: 6px;
+      }
+      .chip.amber {
+        background: rgba(245, 158, 11, 0.18);
+        border-color: rgba(245, 158, 11, 0.4);
+        color: #ffe7b3;
+      }
+      .chip.cyan {
+        background: rgba(6, 182, 212, 0.18);
+        border-color: rgba(6, 182, 212, 0.4);
+        color: #c8f8ff;
+      }
+      .panel {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .panel h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-left: 0;
+        list-style: none;
+        margin: 6px 0 0 0;
+      }
+      .list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .list li svg {
+        flex: 0 0 18px;
+        margin-top: 2px;
+      }
+
+      /* Secciones */
+      section {
+        max-width: var(--max);
+        margin: 22px auto;
+        padding: 0 16px;
+      }
+      .section-title {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .section-title h2 {
+        font-size: 26px;
+      }
+      .section-title .note {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .grid-1 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 10px;
+        background: rgba(6, 182, 212, 0.15);
+        color: #bff3fb;
+        border: 1px solid rgba(6, 182, 212, 0.35);
+        font-weight: 700;
+      }
+
+      /* Social general (secciones y footer) */
+      .social {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .social a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-weight: 700;
+      }
+      .social a:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* Footer especial Josbrevar07 */
+      footer {
+        margin-top: 26px;
+        padding: 24px 16px;
+        background: rgba(17, 24, 39, 0.85);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+      }
+      .signature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+      }
+      .signature .sig {
+        font-weight: 700;
+        color: var(--text);
+      }
+      .footer-links p {
+        margin: 4px 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        header.hero {
+          grid-template-columns: 1fr;
+        }
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav {
+          grid-template-columns: auto 1fr auto;
+        }
+        .nav-links {
+          gap: 2px;
+        }
+        .grid,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Accesibilidad: focus visible */
+      :focus-visible {
+        outline: 3px solid #a7f3d0;
+        outline-offset: 3px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <div class="nav-wrap" id="nav">
+      <div class="nav" role="navigation" aria-label="Navegación principal">
+        <div class="brand">
+          <div class="brand-logo" aria-hidden="true"></div>
+          <span>Página web de apoyo</span>
+        </div>
+        <div class="nav-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#personas">Personas</a>
+          <a href="#familias">Familias</a>
+          <a href="#docentes">Docentes</a>
+          <a href="#conciencia">Conciencia</a>
+          <a href="#autocuidado">Autocuidado</a>
+        </div>
+        <div class="nav-social" aria-label="Redes">
+          <!-- WhatsApp -->
+          <a
+            class="icon-btn"
+            href="https://walink.co/341b8e"
+            target="_blank"
+            aria-label="WhatsApp"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2a10 10 0 0 0-9 14l-1 4 4-1a10 10 0 1 0 6-17Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M8 10c1 3 4 5 6 6 2 1 3 0 3-1l-2-2c-1 0-1 0-2 1-1 0-3-2-3-3 0-1 1-1 1-2L10 7c-1 0-2 1-2 3Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a
+            class="icon-btn"
+            href="https://www.instagram.com/josbrevar07/"
+            target="_blank"
+            aria-label="Instagram"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle cx="17" cy="7" r="1" fill="currentColor" />
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a
+            class="icon-btn"
+            href="https://www.facebook.com/josue.brenesvargas"
+            target="_blank"
+            aria-label="Facebook"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M14 9h3V6h-3a3 3 0 0 0-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
+          </a>
+          <!-- YouTube -->
+          <a
+            class="icon-btn"
+            href="https://www.youtube.com/@josbrevar0773"
+            target="_blank"
+            aria-label="YouTube"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 12s0-5-1-6a3 3 0 0 0-2-2c-2-.5-7-.5-7-.5s-5 0-7 .5a3 3 0 0 0-2 2c-1 1-1 6-1 6s0 5 1 6a3 3 0 0 0 2 2c2 .5 7 .5 7 .5s5 0 7-.5a3 3 0 0 0 2-2c1-1 1-6 1-6Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path d="M10 15l5-3-5-3v6Z" fill="currentColor" />
+            </svg>
+          </a>
+          <!-- Blog -->
+          <a
+            class="icon-btn"
+            href="https://josbrevar07.github.io/blog_del_profe_josue_2.0/"
+            target="_blank"
+            aria-label="Blog del Profe Josué"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 6h10l2 2h4v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M8 11h8M8 15h6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <header id="inicio" class="hero">
+      <div class="card">
+        <h1>Aceptación y autoayuda en salud mental</h1>
+        <p>
+          Este espacio es educativo y de apoyo.
+          <strong>No reemplaza la orientación profesional.</strong> Si tienes
+          preocupaciones, conversar con un profesional de salud puede ayudar. O
+          incluso, solo conversar con alguien podría ayudar un poco.
+        </p>
+        <div class="cta-row" role="group" aria-label="Acciones principales">
+          <a class="btn brand" href="#personas">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 21c5-4 12-6 14-14 0 0-9 0-12 5s-2 9-2 9Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            Empezar aquí
+          </a>
+          <a class="btn alt" href="#conciencia">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 19V5a3 3 0 0 1 3-3h11v17H7a3 3 0 0 0-3 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            Información clave
+          </a>
+        </div>
+        <div class="tip">
+          Pedir ayuda es un acto de valentía. La salud mental se fortalece con
+          apoyo humano y profesional.
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="chip">No estás solo o sola, en este camino</div>
+        <div class="chip amber">
+          Vive a tu ritmo y en caso de ser necesario solicita ayuda
+        </div>
+        <div class="chip cyan">
+          Sigue adelante porque, hay personas que quieren ayudarte y ver
+          alcanzar tus sueños
+        </div>
+        <div class="panel">
+          <h3>Mensajes que acompañan y son valiosos para ti</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 21s-6.5-4.35-8.5-7.35C1.5 10.5 3 7 6.5 7c2 0 3.5 1.5 5.5 3.5C14.5 8.5 16 7 18 7c3.5 0 5 3.5 4.5 6.65C18.5 16.65 12 21 12 21Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Tu experiencia importa. Hablarla con alguien de confianza puede
+              aliviar.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M15 9l-3 6-3-3 6-3Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Los pasos pequeños también cuentan. Celebra tus avances
+              cotidianos.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M16 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M4 20a8 8 0 0 1 16 0"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              La comunidad puede ser un sostén: familia, amistades, escuela,
+              trabajo.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- PERSONAS -->
+    <section id="personas">
+      <div class="section-title">
+        <h2>Para personas que buscan apoyo</h2>
+        <span class="note">Información general, no diagnóstica</span>
+      </div>
+      <div class="grid">
+        <div class="panel">
+          <h3>Señales comunes que pueden preocupar</h3>
+          <p class="note">
+            Si notas cambios que afectan tu día a día, conversar con un
+            profesional puede ayudar.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Cambios de ánimo, energía o interés en actividades cotidianas.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect
+                  x="3"
+                  y="4"
+                  width="18"
+                  height="17"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 2v4M16 2v4M3 9h18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Dificultad para organizar rutinas, concentrarse o recordar tareas
+              importantes.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 18h9a4 4 0 0 0 0-8h-1a6 6 0 0 0-11 3 4 4 0 0 0 3 5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Estrés sostenido o preocupación que dificulta el bienestar
+              cotidiano.
+            </li>
+          </ul>
+          <div class="tip" style="margin-top: 8px">
+            Esta lista no diagnostica. Un profesional puede ayudarte a entender
+            lo que estás viviendo.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Autocuidado cotidiano</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" />
+              </svg>
+              Ritmo estable: horarios de sueño, comida y pausas breves durante
+              el día.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M8 5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M6 22l4-8 4 3 2 5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Movimiento suave y regular, según tus posibilidades.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M7 9h10M7 13h7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Conversar con alguien de confianza para compartir lo que estás
+              viviendo.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M5 21c5-4 12-6 14-14 0 0-9 0-12 5s-2 9-2 9Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Reducir sobrecarga: organiza prioridades y permite descansos.
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Buscar apoyo profesional</h3>
+          <p class="note">
+            La orientación profesional es clave cuando las dificultades afectan
+            tus actividades cotidianas.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 4l-5 2v14l5-2 6 2 5-2V4l-5 2-6-2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Explora opciones locales: clínicas, centros comunitarios y
+              profesionales independientes.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect
+                  x="6"
+                  y="2"
+                  width="12"
+                  height="20"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M9 6h6M9 10h6M9 14h4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Solicita una evaluación para comprender mejor tus necesidades.
+            </li>
+          </ul>
+          <div class="tip" style="margin-top: 8px">
+            Este sitio acompaña; no reemplaza el apoyo profesional.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAMILIAS -->
+    <section id="familias">
+      <div class="section-title">
+        <h2>Estudiantes y familias</h2>
+        <span class="note">Cuidado cotidiano y comunicación</span>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Para estudiantes</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Divide tareas en pasos pequeños y usa recordatorios visuales.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 19V5a3 3 0 0 1 3-3h11v17H7a3 3 0 0 0-3 2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Pide aclaraciones y alternativas de aprendizaje cuando lo
+              necesites.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 12a8 8 0 0 1 16 0M4 12v5a3 3 0 0 0 3 3h1M20 12v5a3 3 0 0 1-3 3h-1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Crea un ambiente de estudio con pausas y apoyos sensoriales que te
+              funcionen.
+            </li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Para familias</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M16 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M4 20a8 8 0 0 1 16 0"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Acuerden rutinas claras y flexibles; celebren los avances.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M7 9h10M7 13h7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Escuchen con empatía; validen las emociones sin juzgar.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 12a3 3 0 0 1 3-3h1a3 3 0 0 1 0 6h-1M7 12a5 5 0 0 1 5-5h1a5 5 0 0 1 0 10h-1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Coordinen con la escuela y profesionales para apoyos coherentes.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCENTES -->
+    <section id="docentes">
+      <div class="section-title">
+        <h2>Docentes</h2>
+        <span class="note">Ajustes razonables y cultura de cuidado</span>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Prácticas en aula</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 3h4a2 2 0 0 1 2 2v2h2a2 2 0 1 1 0 4h-2v2a2 2 0 1 1-4 0V11H7a2 2 0 1 1 0-4h2V5a2 2 0 0 0-2-2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Ofrecer opciones de entrega y evaluación variadas.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Señalización clara, apoyos visuales y tiempos diferenciados.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3l8 4v6c0 5-4.5 7.5-8 9-3.5-1.5-8-4-8-9V7l8-4Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Entorno seguro: respeto, confidencialidad y canales de apoyo.
+            </li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Trabajo en red</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect
+                  x="3"
+                  y="4"
+                  width="18"
+                  height="17"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 2v4M16 2v4M3 9h18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Reuniones con familias y profesionales para acordar apoyos.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M3 7h6l2 2h10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Materiales accesibles: tipografías legibles y formatos
+              alternativos.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCIENCIA: TRASTORNOS (RESUMEN EDUCATIVO) -->
+    <section id="conciencia">
+      <div class="section-title">
+        <h2>Conciencia y educación: trastornos comunes</h2>
+        <span class="note">Resumen educativo, no diagnóstico</span>
+      </div>
+      <div class="grid">
+        <!-- Dislexia -->
+        <div class="panel">
+          <h3>Dislexia</h3>
+          <p class="note">
+            Dificultades en lectura y procesamiento de palabras. Las
+            experiencias varían entre personas.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 17l4-10 4 10M14 17l2-5 2 5M8 13h4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Dificultades para decodificar palabras, ritmo de lectura y
+              ortografía.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2l9 5-9 5-9-5 9-5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M3 12l9 5 9-5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Fortalezas posibles: creatividad, razonamiento visual y soluciones
+              prácticas.
+            </li>
+          </ul>
+          <div class="badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M14 7a4 4 0 0 0 6-2l-6 6v7l-2 2-4-4 2-2h7l6-6a4 4 0 0 0-2 6"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
+            Apoyos: tipografías legibles, audiolibros, tiempo adicional,
+            tutores.
+          </div>
+        </div>
+
+        <!-- Demencia -->
+        <div class="panel">
+          <h3>Demencia</h3>
+          <p class="note">
+            Puede afectar memoria, orientación y funcionamiento cotidiano.
+            Requiere evaluación profesional.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 8a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4V8Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Cambios en memoria reciente, atención y orientación en espacios
+              conocidos.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Necesidad de apoyo creciente en actividades diarias y seguridad en
+              el hogar.
+            </li>
+          </ul>
+          <div class="badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12l3-2 2 2 3-3 4 4 2-1"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
+            Cuidado: rutinas claras, señalización, acompañamiento y coordinación
+            con profesionales.
+          </div>
+        </div>
+
+        <!-- Ansiedad -->
+        <div class="panel">
+          <h3>Ansiedad</h3>
+          <p class="note">
+            Preocupación intensa y sostenida que puede interferir con el
+            bienestar y las actividades diarias.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Tensión física, inquietud, dificultad para concentrarse.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" />
+              </svg>
+              Autocuidado: respiración lenta, pausas, organización en pasos
+              pequeños.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Depresión -->
+        <div class="panel">
+          <h3>Depresión</h3>
+          <p class="note">
+            Cambios persistentes en ánimo y energía que pueden afectar el
+            interés y el funcionamiento cotidiano.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 18h9a4 4 0 0 0 0-8h-1a6 6 0 0 0-11 3 4 4 0 0 0 3 5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Tristeza sostenida, dificultad para sentir placer, cambios de
+              sueño y apetito.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M7 9h10M7 13h7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Apoyo: hablar con alguien de confianza y considerar consulta
+              profesional.
+            </li>
+          </ul>
+        </div>
+
+        <!-- TDAH -->
+        <div class="panel">
+          <h3>TDAH</h3>
+          <p class="note">
+            Puede influir en atención, organización y control de impulsos;
+            también aporta energía y creatividad.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Dificultad para sostener la atención y terminar tareas.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 11l2 2 4-4M4 6h6M4 12h6M4 18h6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Estrategias: recordatorios visuales, dividir tareas y tiempos de
+              descanso.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Trastornos del sueño -->
+        <div class="panel">
+          <h3>Trastornos del sueño</h3>
+          <p class="note">
+            Cambios en conciliación, mantenimiento del sueño o sueño reparador
+            pueden afectar el bienestar.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3c4 0 9 5 9 9s-5 9-9 9-9-5-9-9 5-9 9-9Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Higiene del sueño: horarios regulares, menos pantallas antes de
+              dormir, ambiente tranquilo.
+            </li>
+          </ul>
+        </div>
+
+        <!-- TEA (Trastorno del espectro autista) - información general -->
+        <div class="panel">
+          <h3>TEA (información general)</h3>
+          <p class="note">
+            El TEA puede influir en comunicación social y patrones
+            sensoriales/conductuales. Las experiencias y necesidades son
+            diversas.
+          </p>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Preferencias por rutinas claras y apoyos visuales; sensibilidad a
+              estímulos.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 6h10l2 2h4v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Apoyos posibles: comunicación concreta, tiempos diferenciados,
+              coordinación con familia y escuela.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top: 16px">
+        <h3>Camino de apoyo</h3>
+        <p>
+          Si tú o alguien cercano experimenta cambios que preocupan, una
+          evaluación profesional puede orientar apoyos adecuados. La información
+          aquí es general y educativa.
+        </p>
+      </div>
+    </section>
+
+    <!-- AUTOCUIDADO -->
+    <section id="autocuidado">
+      <div class="section-title">
+        <h2>Autocuidado y apoyo comunitario</h2>
+        <span class="note">Estrategias generales</span>
+      </div>
+      <div class="grid">
+        <div class="panel">
+          <h3>Rutinas amables</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 11l2 2 4-4M4 6h6M4 12h6M4 18h6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Agenda visual, alarmas suaves y descansos programados.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2s6 6 6 10a6 6 0 1 1-12 0c0-4 6-10 6-10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Hidratación y alimentación regular según tus posibilidades.
+            </li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Red de apoyo</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M6 2h6l2 4-2 3 4 4 3-2 4 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Contactos confiables y profesionales de salud cuando lo necesites.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M2 12h20M12 3a16 16 0 0 1 0 18M7 3a20 20 0 0 0 0 18M17 3a20 20 0 0 0 0 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Comunidades locales y escolares con enfoque de cuidado y respeto.
+            </li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Espacios de calma</h3>
+          <ul class="list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6-12v10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Música tranquila, respiración lenta y ambientes con menos
+              estímulos.
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Actividades significativas: arte, jardinería, lectura en voz alta.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-title">
+        <h2>Contacto y redes</h2>
+        <span class="note">Para apoyo comunitario y difusión</span>
+      </div>
+      <div class="panel">
+        <p>
+          Comparte este espacio y conecta con redes de apoyo. Si tienes
+          preocupaciones, considera contactar a profesionales de salud en tu
+          comunidad.
+        </p>
+        <div class="social" style="margin-top: 10px">
+          <a
+            href="https://walink.co/341b8e"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2a10 10 0 0 0-9 14l-1 4 4-1a10 10 0 1 0 6-17Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M8 10c1 3 4 5 6 6 2 1 3 0 3-1l-2-2c-1 0-1 0-2 1-1 0-3-2-3-3 0-1 1-1 1-2L10 7c-1 0-2 1-2 3Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            WhatsApp
+          </a>
+          <a
+            href="https://www.instagram.com/josbrevar07/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle cx="17" cy="7" r="1" fill="currentColor" />
+            </svg>
+            Instagram
+          </a>
+          <a
+            href="https://www.facebook.com/josue.brenesvargas"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M14 9h3V6h-3a3 3 0 0 0-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
+            Facebook
+          </a>
+          <a
+            href="https://www.youtube.com/@josbrevar0773"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 12s0-5-1-6a3 3 0 0 0-2-2c-2-.5-7-.5-7-.5s-5 0-7 .5a3 3 0 0 0-2 2c-1 1-1 6-1 6s0 5 1 6a3 3 0 0 0 2 2c2 .5 7 .5 7 .5s5 0 7-.5a3 3 0 0 0 2-2c1-1 1-6 1-6Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path d="M10 15l5-3-5-3v6Z" fill="currentColor" />
+            </svg>
+            YouTube
+          </a>
+          <a
+            href="https://josbrevar07.github.io/blog_del_profe_josue_2.0/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Blog del Profe Josué"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 6h10l2 2h4v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M8 11h8M8 15h6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            Blog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER ESPECIAL JOSBREVAR07 -->
+    <footer role="contentinfo">
+      <div class="footer-inner">
+        <!-- Branding -->
+        <div class="signature">
+          <div class="brand-logo" aria-hidden="true"></div>
+          <span class="sig">Josbrevar07</span>
+          <span>• Comunidad, ética y celebración cotidiana</span>
+        </div>
+
+        <!-- Nota ética -->
+        <div class="social">
+          <span
+            class="badge"
+            style="
+              background: rgba(245, 158, 11, 0.15);
+              border-color: rgba(245, 158, 11, 0.35);
+              color: #ffe7b3;
+            "
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3l7 3v5c0 5-4 8-7 10-3-2-7-5-7-10V6l7-3Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M12 10c1-2 4-2 4 1 0 2-2 3-4 4-2-1-4-2-4-4 0-3 3-3 4-1Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            Este sitio es educativo y no reemplaza ayuda profesional
+          </span>
+          <span class="badge">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 10l15-6v12L3 10Zm5 7v3l3-1v-2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            Comparte con tu comunidad
+          </span>
+        </div>
+
+        <!-- Copyright -->
+        <p>Designed by: Josbrevar07.</p>
+        <div class="social">
+          <a
+            href="https://walink.co/341b8e"
+            target="_blank"
+            title="WhatsApp"
+            aria-label="WhatsApp"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.instagram.com/josbrevar07/"
+            target="_blank"
+            title="Instagram"
+            aria-label="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.facebook.com/josue.brenesvargas"
+            target="_blank"
+            title="Facebook"
+            aria-label="Facebook"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.93 2.86 7.19 6.58 7.88v-5.57H4.69V8h1.89V6.24c0-1.87 1.1-2.89 2.78-2.89.81 0 1.66.15 1.66.15v1.83h-.94c-.93 0-1.22.58-1.22 1.17V8h2.08l-.33 2.31H8.87v5.57C12.14 15.19 16 11.93 16 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.youtube.com/@josbrevar0773"
+            target="_blank"
+            title="YouTube"
+            aria-label="YouTube"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://josbrevar07.github.io/blog_del_profe_josue_2.0/"
+            target="_blank"
+            title="Blog del Profe Josué"
+            aria-label="Blog"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
+              />
+            </svg>
+          </a>
+        </div>
+        <p>All rights reserved.</p>
+        <p>©2025.</p>
+
+        <!-- Enlaces a tus otros proyectos -->
+        <div class="footer-links">
+          <p>
+            <a
+              href="https://clases-de-manejo-personalizadas.com/"
+              target="_blank"
+              >Clases de manejo personalizadas, página web</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://josbrevar07.github.io/servicio_de_impresiones/"
+              target="_blank"
+              >Servicio de impresiones a domicilio, página web</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://josbrevar07.github.io/learning_any_language/"
+              target="_blank"
+              >Learning Any Language, página web</a
+            >
+          </p>
+          <p>
+            <a href="https://www.ivettenutricionista.com/" target="_blank"
+              >Consultorio de Nutrición, página web</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // NAV: ocultar al bajar y mostrar al subir
+      (function () {
+        const nav = document.getElementById("nav");
+        let lastY = window.scrollY;
+        let ticking = false;
+        function onScroll() {
+          const y = window.scrollY;
+          const goingDown = y > lastY && y > 60;
+          nav.classList.toggle("hide", goingDown);
+          lastY = y;
+          ticking = false;
+        }
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(onScroll);
+              ticking = true;
+            }
+          },
+          { passive: true }
+        );
+      })();
+
+      // Atajo accesible (Alt+Shift+1: ir a Personas)
+      (function () {
+        document.addEventListener("keydown", (e) => {
+          if (e.altKey && e.shiftKey && e.key === "1") {
+            const el = document.getElementById("personas");
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
